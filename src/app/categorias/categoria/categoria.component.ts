@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Categoria } from 'src/app/core/model';
+import { CategoriasService } from '../categorias.service';
 
 @Component({
   selector: 'app-categoria',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriaComponent implements OnInit {
 
-  constructor() { }
+  categorias: Observable<Categoria[]>;
+  displayedColumns = ['nomecategoria'];
 
-  ngOnInit() {
+
+  constructor(private categoriasService: CategoriasService) {
+    this.categorias = this.categoriasService.listCategorias();
+  }
+
+  ngOnInit(): void {
   }
 
 }
